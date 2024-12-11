@@ -32,8 +32,14 @@ jobs:
         run: |
           git merge upstream/${{ env.UPSTREAM_BRANCH }} -X ours || true
         continue-on-error: true
-     
-      # Step 4: Check for merge conflicts and log them if detected  
+    
+      # Step 4: Configure Git user
+      - name: Configure Git User
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions Bot"
+
+      # Step 5: Check for merge conflicts and log them if detected  
       - name: Check for Conflicts
         run: |
           if git ls-files -u | grep .; then
@@ -43,13 +49,13 @@ jobs:
             echo "No conflicts detected.";
           fi
           
-      # Step 5: Commit changes if applicable
+      # Step 6: Commit changes if applicable
       - name: Commit Changes
         run: |
           git add .
           git commit -m "Sync with upstream using 'ours' strategy" || echo "No changes to commit."
       
-      # Step 6: Push the changes back to the downstream branch
+      # Step 7: Push the changes back to the downstream branch
       - name: Push Changes
         run: git push origin ${{ env.DOWNSTREAM_BRANCH }}
         
