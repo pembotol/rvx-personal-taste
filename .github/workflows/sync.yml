@@ -43,7 +43,8 @@ jobs:
       - name: Check for Conflicts
         run: |
           if git ls-files -u | grep .; then
-            echo "Conflict detected! Please resolve manually.";
+            echo "Conflict detected! Conflicting files:";
+            git ls-files -u;
             exit 1;
           else
             echo "No conflicts detected.";
@@ -60,7 +61,12 @@ jobs:
         run: |
           git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/pembotol/rvx-personal-taste.git
 
+      # Debugging: Periksa remote URL dan token
+      - name: Debug Remote URL
+        run: |
+          git remote -v
+          echo "Token used for authentication: ${{ secrets.PAT_TOKEN }}"
+
       # Step 8: Push the changes back to the downstream branch
       - name: Push Changes
         run: git push origin ${{ env.DOWNSTREAM_BRANCH }}
-        
