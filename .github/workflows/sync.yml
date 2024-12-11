@@ -58,7 +58,7 @@ jobs:
       # Step 7: Update remote URL with token for authentication
       - name: Update Remote URL
         run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/pembotol/rvx-personal-taste.git
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/pembotol/rvx-personal-taste.git
 
       # Step 8: Push the changes back to the downstream branch
       - name: Push Changes
