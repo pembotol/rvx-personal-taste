@@ -12,6 +12,6 @@ Just For Personal Taste.
 
 [inotia00](https://github.com/inotia00) for [revanced-extended patches](https://github.com/inotia00/revanced-patches).
 
-[anddea](htpps:/github.com/anddea) for [revanced-extended patches](https://github.com/anddea/revanced-patches).
+[anddea](https://github.com/anddea) for [revanced-extended patches](https://github.com/inotia00/revanced-patches).
 
 [NoName](https://github.com/NoName-exe) for code that suitable to my device)
