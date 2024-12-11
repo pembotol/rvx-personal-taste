@@ -55,7 +55,12 @@ jobs:
           git add .
           git commit -m "Sync with upstream using 'ours' strategy" || echo "No changes to commit."
       
-      # Step 7: Push the changes back to the downstream branch
+      # Step 7: Update remote URL with token for authentication
+      - name: Update Remote URL
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/pembotol/rvx-personal-taste.git
+
+      # Step 8: Push the changes back to the downstream branch
       - name: Push Changes
         run: git push origin ${{ env.DOWNSTREAM_BRANCH }}
         
