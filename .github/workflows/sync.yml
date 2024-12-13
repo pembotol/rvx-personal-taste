@@ -8,38 +8,33 @@ env:
 
 on:
   schedule:
-    - cron: '0 20 * * *' # Scheduled to run daily at 20.00 UTC
-  workflow_dispatch: # Allows manual trigger via GitHub Actions UI
+    - cron: '0 20 * * *' 
+  workflow_dispatch:
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Check out the current downstream branch
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
           ref: ${{ env.DOWNSTREAM_BRANCH }}
          
-      # Step 2: Add upstream repository and fetch updates
-      - name: Fetch Upstream
+      - name: Fetch Upstrear
         run: |
           git remote add upstream ${{ env.UPSTREAM_URL }}
           git fetch upstream ${{ env.UPSTREAM_BRANCH }}
     
-      # Step 3: Merge updates from upstream using 'ours' strategy to prioritize local changes
       - name: Merge Upstream Changes
         run: |
           git merge upstream/${{ env.UPSTREAM_BRANCH }} -X ours || true
         continue-on-error: true
     
-      # Step 4: Configure Git user
       - name: Configure Git User
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions Bot"
 
-      # Step 5: Check for merge conflicts and log them if detected  
       - name: Check for Conflicts
         run: |
           if git ls-files -u | grep .; then
@@ -50,17 +45,14 @@ jobs:
             echo "No conflicts detected.";
           fi
           
-      # Step 6: Commit changes if applicable
       - name: Commit Changes
         run: |
           git add .
           git commit -m "Sync with upstream using 'ours' strategy" || echo "No changes to commit."
       
-      # Step 7: Update remote URL with token for authentication
       - name: Update Remote URL
         run: |
           git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/pembotol/rvx-personal-taste.git
 
-      # Step 8: Push the changes back to the downstream branch
       - name: Push Changes
         run: git push origin ${{ env.DOWNSTREAM_BRANCH }}
