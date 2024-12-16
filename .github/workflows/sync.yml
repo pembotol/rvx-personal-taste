@@ -20,14 +20,14 @@ jobs:
         with:
           ref: ${{ env.DOWNSTREAM_BRANCH }}
          
-      - name: Fetch Upstrear
+      - name: Fetch Upstream
         run: |
           git remote add upstream ${{ env.UPSTREAM_URL }}
           git fetch upstream ${{ env.UPSTREAM_BRANCH }}
     
       - name: Merge Upstream Changes
         run: |
-          git merge upstream/${{ env.UPSTREAM_BRANCH }} -X ours || true
+          git merge upstream/${{ env.UPSTREAM_BRANCH }} || true
         continue-on-error: true
     
       - name: Configure Git User
@@ -39,7 +39,6 @@ jobs:
         run: |
           if git ls-files -u | grep .; then
             echo "Conflict detected! Conflicting files:";
-            git ls-files -u;
             exit 1;
           else
             echo "No conflicts detected.";
@@ -48,7 +47,7 @@ jobs:
       - name: Commit Changes
         run: |
           git add .
-          git commit -m "Sync with upstream using 'ours' strategy" || echo "No changes to commit."
+          git commit -m "Sync with upstream" || echo "No changes to commit."
       
       - name: Update Remote URL
         run: |
