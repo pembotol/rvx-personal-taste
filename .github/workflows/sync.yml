@@ -8,7 +8,7 @@ env:
 
 on:
   schedule:
-    - cron: '0 20 * * *' 
+    - cron: '0 13 * * *' 
   workflow_dispatch:
 
 jobs:
