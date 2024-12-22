@@ -13,7 +13,6 @@ rv-brand = "RVX-anddea"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 build-mode = "both"
 included-patches = "'MaterialYou'"
-build-mode = "both"
 module-prop-name = "RVX"
 
  [Music]
