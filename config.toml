@@ -27,7 +27,10 @@ parallel-jobs = 1
 # arch = "arm64-v8a"
 # module-prop-name = "RVMX"
 
+# dont build on gh actions (https://github.com/j-hc/revanced-magisk-module/issues/554)
+
 [Music-Extended]
+enabled = false
 app-name = "Music"
 patches-source = "inotia00/revanced-patches"
 cli-source = "inotia00/revanced-cli"
@@ -40,6 +43,7 @@ apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube-music"
 module-prop-name = "RMVX00"
 
 [YouTube-Extended]
+enabled = false
 app-name = "YouTube"
 patches-source = "inotia00/revanced-patches"
 cli-source = "inotia00/revanced-cli"
@@ -50,3 +54,4 @@ excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube"
 # archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 module-prop-name = "RVX"
+
