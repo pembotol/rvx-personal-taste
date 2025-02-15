@@ -28,25 +28,31 @@ parallel-jobs = 1
 # module-prop-name = "RVMX"
 
 [Music-Extended]
+# enabled = false
 app-name = "Music"
 patches-source = "inotia00/revanced-patches"
-cli-source = "inotia00/revanced-cli"
+# cli-source = "inotia00/revanced-cli"
 rv-brand = "RVMX"
 build-mode = "both"
 arch = "arm64-v8a"
 excluded-patches = "'Custom branding icon YouTube Music' 'Custom package name'"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube-music"
 # archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
-module-prop-name = "RMVX00"
+module-prop-name = "RVMX00"
+patcher-args = " -e 'GmsCore support' -OpackageNameYouTubeMusic='ytm.rvx.noname.exe' "
+version = "auto"
 
 [YouTube-Extended]
+# enabled = false
 app-name = "YouTube"
 patches-source = "inotia00/revanced-patches"
-cli-source = "inotia00/revanced-cli"
+# cli-source = "inotia00/revanced-cli"
 rv-brand = "RVX00"
 build-mode = "both"
 included-patches = "'MaterialYou'"
 excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for YouTube' 'Custom package name'"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube"
-# archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 module-prop-name = "RVX"
+patcher-args = " -e 'GmsCore support' -OpackageNameYouTube='yt.rvx.pembotol' "
+version = "auto"   
+
