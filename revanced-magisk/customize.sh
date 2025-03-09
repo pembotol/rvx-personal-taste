@@ -69,6 +69,7 @@ install() {
 	fi
 	ui_print "- Updating $PKG_NAME to $PKG_VER"
 	settings put global verifier_verify_adb_installs 0
+	settings put global package_verifier_enable 0
 	SZ=$(stat -c "%s" "$MODPATH/$PKG_NAME.apk")
 	if ! SES=$(pm install-create --user 0 -i com.android.vending -r -d -S "$SZ" 2>&1); then
 		ui_print "ERROR: install-create failed"
